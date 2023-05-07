@@ -6,36 +6,36 @@ let lastX = 0;
 let lastY = 0;
 
 function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 }
 
 function startDrawing(e) {
-  if (e.button === 2) { // Disable context menu on right click
-    e.preventDefault();
-    ctx.globalCompositeOperation = 'destination-out'; // Use destination-out to erase
-  } else {
-    ctx.globalCompositeOperation = 'source-over'; // Use source-over to draw
-  }
-  isDrawing = true;
-  [lastX, lastY] = [e.clientX, e.clientY];
+    if (e.button === 2) { // Disable context menu on right click
+        e.preventDefault();
+        ctx.globalCompositeOperation = 'destination-out'; // Use destination-out to erase
+    } else {
+        ctx.globalCompositeOperation = 'source-over'; // Use source-over to draw
+    }
+    isDrawing = true;
+    [lastX, lastY] = [e.clientX, e.clientY];
 }
 
 function stopDrawing() {
-  isDrawing = false;
-  ctx.globalCompositeOperation = 'source-over'; // Switch back to source-over mode
+    isDrawing = false;
+    ctx.globalCompositeOperation = 'source-over'; // Switch back to source-over mode
 }
 
 function draw(e) {
-  if (!isDrawing) return;
-  const lineWidth = e.buttons === 2 ? 30 : 10; // Use right mouse button as an eraser
-  ctx.lineWidth = lineWidth;
-  ctx.lineCap = 'round';
-  ctx.beginPath();
-  ctx.moveTo(lastX, lastY);
-  ctx.lineTo(e.clientX, e.clientY);
-  ctx.stroke();
-  [lastX, lastY] = [e.clientX, e.clientY];
+    if (!isDrawing) return;
+    const lineWidth = e.buttons === 2 ? 30 : 10; // Use right mouse button as an eraser
+    ctx.lineWidth = lineWidth;
+    ctx.lineCap = 'round';
+    ctx.beginPath();
+    ctx.moveTo(lastX, lastY);
+    ctx.lineTo(e.clientX, e.clientY);
+    ctx.stroke();
+    [lastX, lastY] = [e.clientX, e.clientY];
 }
 
 
@@ -43,7 +43,7 @@ resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
 
 function animate() {
-  requestAnimationFrame(animate);
+    requestAnimationFrame(animate);
 }
 animate();
 
@@ -51,3 +51,18 @@ canvas.addEventListener('mousedown', startDrawing);
 canvas.addEventListener('mouseup', stopDrawing);
 canvas.addEventListener('mousemove', draw);
 canvas.addEventListener('contextmenu', e => e.preventDefault()); // Disable context menu on canvas
+
+function showInstructions() {
+    var instructionsDiv = document.getElementById("instructions");
+    if (instructionsDiv.style.display === "block") {
+        instructionsDiv.style.display = "none";
+    } else {
+        instructionsDiv.style.display = "block";
+    }
+}
+
+function handleKeyDown(event) {
+    if (event.code === "Space") {
+        showInstructions();
+    }
+}

@@ -4,8 +4,21 @@
     <title>Canvas Drawing Example</title>
     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
-  <body>
+  <body onkeydown="handleKeyDown(event)">
     <canvas id="canvas"></canvas>
+
+    <button onclick="showInstructions()">Click Space for Instructions</button>
+
+    <div id="instructions" style="display:none">
+      <h2>Instructions</h2>
+      <ul>
+        <li>Left Click to Draw.</li>
+        <li>Hold Right Click to Erase</li>
+        <li>"StartButton + PrintScreen" to Save/Screenshot</li>
+      </ul>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
