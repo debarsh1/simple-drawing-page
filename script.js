@@ -38,9 +38,6 @@ function draw(e) {
   [lastX, lastY] = [e.clientX, e.clientY];
 }
 
-function clearCanvas() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-}
 
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
